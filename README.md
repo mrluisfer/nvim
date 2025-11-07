@@ -1,202 +1,137 @@
-# Neovim Frontend & Backend Config
+# Neovim Configuración Simple (Estilo VSCode)
 
-<!-- ![Neovim Preview](./doc/screenshot-init-vim.PNG) -->
+## ⚡ Sobre esta configuración
 
-![Neovim Preview](./doc/preview.png)
+Esta es una configuración minimalista de Neovim que imita la funcionalidad y los atajos de teclado de VSCode.
+Incluye solo los plugins esenciales para una experiencia de desarrollo moderna y eficiente.
 
-![Neovim Second Preview](./doc/nvim-prev-2.png)
+## 🎯 Características principales
 
-### ⚡ About
+- **Explorador de archivos**: Neo-tree con `Ctrl+B`
+- **Búsqueda de archivos**: Telescope con `Ctrl+P`
+- **Autocompletado**: nvim-cmp con LSP
+- **Resaltado de sintaxis**: TreeSitter
+- **Interfaz limpia**: Lualine + Tokyo Night theme
+- **Atajos familiares**: Similares a VSCode
 
-This is my personal Neovim setup, which is an extension of [LazyVim](http://www.lazyvim.org), already equipped with a quite good and easy-to-configure configuration.
+## 📦 Plugins incluidos (mínimos)
 
-### 🌱 Contribute
+- **neo-tree.nvim**: Explorador de archivos
+- **telescope.nvim**: Búsqueda de archivos y contenido
+- **nvim-cmp**: Autocompletado inteligente
+- **nvim-lspconfig**: Soporte para Language Server Protocol
+- **mason.nvim**: Gestión automática de LSP servers
+- **nvim-treesitter**: Resaltado de sintaxis avanzado
+- **tokyonight.nvim**: Tema visual
+- **lualine.nvim**: Barra de estado
 
-You can contribute by making a **pull request** with any _bugfix_ or _feature_ that you want to add :D
+## ⌨️ Atajos de teclado (estilo VSCode)
 
-If you don't have an idea, you can follow these steps:
+### Navegación de archivos
 
-- Fork the project (optional in case you have a permission error)
-  Or clone it on your local machine
+- `Ctrl+B`: Abrir/cerrar explorador de archivos
+- `Ctrl+P`: Buscar archivos
+- `Ctrl+Shift+F`: Buscar en archivos
+- `Ctrl+Shift+P`: Paleta de comandos
 
-- Create a new branch with:
+### Edición
 
-  ```bash
-  $ git checkout -b <new branch>
-  ```
+- `Ctrl+A`: Seleccionar todo
+- `Ctrl+S`: Guardar archivo
+- `Ctrl+N`: Nuevo archivo
+- `Ctrl+W`: Cerrar archivo
+- `Ctrl+/`: Comentar/descomentar línea
+- `Shift+Alt+Down`: Duplicar línea hacia abajo
+- `Alt+Up/Down`: Mover línea arriba/abajo
 
-- When you have all the changes you have:
+### Navegación entre buffers
 
-  ```bash
-  $ git add .
-  ```
+- `Ctrl+Tab`: Siguiente buffer
+- `Ctrl+Shift+Tab`: Buffer anterior
 
-  ```bash
-  $ git commit -m "a description"
-  ```
+### LSP (Language Server)
 
-  ```bash
-  $ git push origin <new branch>
-  ```
+- `gd`: Ir a definición
+- `K`: Mostrar documentación
+- `F2`: Renombrar símbolo
+- `Ctrl+.`: Acciones de código
 
-And do a **pull request** to the **main** branch
+## 🚀 Instalación
 
-### 📦 Requirements
+### 1. Instalar Neovim (versión 0.8+)
 
-- Neovim >= 0.9.0
-
-- Git >= 2.19.0 (for clone this project and dependencies inside neovim config)
-
-- GripGrep >= 13.0.0
-
-- FzF >= 0.40.0 (dependes on some plugins that use this fuzzy finder)
-
-- A C compiler in your path and libstdc++ installed [(Windows users please read this)](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support)
-
-- Some terminal like Kitty, Alacritty, iterm2 or warp
-
-- A recommendation is install a Nerd Font for ligatures and display icons
-
-## ❗ Important
-
-For a good operation of this configuration and to take **advantage of all** the Plugins, we recommend you to use v8 or higher that adds many improvements and support for many things
-
-More information below:
-
-- [Official Documentation](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-
-- [Releases](https://github.com/neovim/neovim/releases)
-
-## Usage
-
-When cloning the repository, in case the folder is named _neovim-dotfiles_, change the name to **nvim** so that Neovim recognizes it
-
-### 📚 Install Neovim:
-
-For **Windows** run one of the two commands within **powershell**, you can use **choco** or **scoop**
+**macOS:**
 
 ```bash
-$ scoop install neovim
-
-# Or
-
-$ choco install neovim -y
+brew install neovim
 ```
 
-And for **Linux** and **MacOs** : [neovim/wiki/Installing-Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-
-or see this custom gist, on how to install Neovim on different Linux distributions:
-
-- [gist.github.com/mrLuisFer/install-neovim](https://gist.github.com/mrLuisFer/19b8bc00d7e1295a1a7453a010b5d623)
-
-Also you need install python neovim support.
+**Ubuntu/Debian:**
 
 ```bash
-$ sudo apt-get install python3-neovim python3-pip
-
-$ pip install pynvim
+sudo apt update && sudo apt install neovim
 ```
 
-## 🌙 Install Manager:
-
-In this config use **packer** to handle and install plugins.
-
-To install **Packer.nvim** you can run any of these commands
-
-Linux, Unix
+### 2. Clonar esta configuración
 
 ```bash
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+# Hacer backup de tu configuración actual (si existe)
+mv ~/.config/nvim ~/.config/nvim.backup
+
+# Clonar esta configuración
+git clone https://github.com/mrluisfer/nvim ~/.config/nvim
 ```
 
-If you use Arch Linux, there is also an [AUR package.](https://aur.archlinux.org/packages/nvim-packer-git/)
+### 3. Abrir Neovim
 
-Windows (Powershell)
+La primera vez que abras Neovim, lazy.nvim instalará automáticamente todos los plugins:
 
 ```bash
-git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
+nvim
 ```
 
-More information about packer:
+### 4. Instalar Language Servers (opcional)
 
-- [Documentation](https://github.com/wbthomason/packer.nvim)
-- [Tips and Tricks](https://github.com/wbthomason/packer.nvim/wiki/Tips-and-Tricks)
-- [Requirements](https://github.com/wbthomason/packer.nvim#requirements)
+Los LSP servers se instalan automáticamente con Mason cuando abres un archivo del lenguaje correspondiente.
+Los incluidos por defecto son:
 
-### 📘 Setup Windows:
+- `lua_ls`: Para Lua
+- `ts_ls`: Para TypeScript/JavaScript
 
-```
-$ cd %APPDATA\Local\nvim
-```
+## 🔧 Personalización
 
-````bash
-If you want to test another branch, change `main` to to the name of the branch you want to test
+El archivo principal de configuración es `init.lua`. Puedes:
 
-But the main branch is so to speak the stable version
+1. **Agregar más LSP servers**: Modifica la lista en `ensure_installed`
+2. **Cambiar tema**: Reemplaza `tokyonight` por otro tema
+3. **Agregar plugins**: Añade nuevas entradas en la tabla de `require("lazy").setup()`
+4. **Modificar atajos**: Actualiza la sección de keymaps
 
-```bash
-$ git clone -b main https://github.com/mrLuisFer/nvim.git .
-````
+## 🆘 Solución de problemas
 
-If you have an error like `'C' compiler not found`:
+### Los atajos no funcionan
 
-Open a terminal as a Admin and run:
+- Verifica que tu terminal soporte los atajos de teclado (especialmente Ctrl+Shift)
+- Algunos terminales requieren configuración adicional para Ctrl+/
 
-```
-$ choco install zig
-```
+### LSP no funciona
 
-### 🐧 Setup Linux:
+- Ejecuta `:Mason` para ver el estado de los language servers
+- Ejecuta `:LspInfo` para diagnosticar problemas de LSP
 
-```bash
-$ mkdir -p $HOME/.config/nvim
+### Plugins no se cargan
 
-$ cd $HOME/.config/
+- Ejecuta `:Lazy` para ver el estado de los plugins
+- Ejecuta `:Lazy sync` para actualizar plugins
 
-$ git clone -b develop https://github.com/mrLuisFer/nvim.git .
-```
+## 🤝 Contribuir
 
-### 🌈 Colorschemes
+Si encuentras algún problema o tienes sugerencias:
 
-If you do not like the color that comes by default, you can execute the command inside **neovim:** `:colorscheme + TAB` and you will see a list of themes that you can select
+1. Abre un issue
+2. Envía un pull request
+3. Comparte tus mejoras
 
-## 📦 LSP Config
+## 📝 Licencia
 
-[What's LSP?](https://microsoft.github.io/language-server-protocol/)
-
-[In this configuration use lspconfig](https://github.com/neovim/nvim-lspconfig)
-And **Lsp-Installer** for install lsp languages -> [williamboman/nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
-
-Or `:LspInfo` for see the languages you have setup
-
-## ⚠ Warning
-
-It may be that when you enter the cloned configuration in nvim for the first time, you will get multiple errors
-
-But don't worry just press `Enter` or `q` and run this command **:PackerInstall** or **PackerSync**
-Several plugins will be downloaded, then **restart neovim (exit and enter neovim again)**
-
-## 🤖 Setup GitHub Copilot
-
-In this setting you have the option to enable GitHub Copilot for smart autocompletion.
-
-First you must be able to use Copilot, once activated in your account, execute:
-
-```
-:Copilot setup
-```
-
-With this it will open a page in your browser where you will perform an authentication and with that it will be ready :)
-
-If in case the autocomplete does not appear, execute:
-
-```
-:Copilot enable
-```
-
-If you want to read more about this plugin I leave you the documentation:
-
-- [github/copilot.vim](https://github.com/github/copilot.vim)
-
-Made with 💙 [by mrLuisFer](https://mrluisfer-linktry.netlify.app/)
+MIT License - Siéntete libre de usar y modificar esta configuración.
